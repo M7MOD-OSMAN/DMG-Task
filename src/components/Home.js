@@ -9,7 +9,7 @@ const Home = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [usersPerPage] = useState(3)
+  const [usersPerPage] = useState(4)
 
   useEffect(() => {
     const postUsers = async () => {
@@ -31,8 +31,8 @@ const Home = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   return (
-    <div className='container mt-5'>
-      <h1 className='text-warning mb-3'>Users DB</h1>
+    <div className='container mt-5 home'>
+      <h1 className=' mb-3 user-heading'>Users DB</h1>
       <Users users={currentUsers} loading={loading} />
       <Pagination
         usersPerPage={usersPerPage}

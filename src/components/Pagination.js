@@ -14,8 +14,8 @@ const Pagination = ({ usersPerPage, totalUsers, paginate }) => {
           <li key={number} className='page-item'>
             <a
               onClick={(e) => {
-                paginate(number)
                 e.preventDefault()
+                paginate(number)
               }}
               href='!#'
               className='page-link'
