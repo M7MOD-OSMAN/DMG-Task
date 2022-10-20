@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormInput from './components/FormInput/FormInput'
 import './App.css'
 import Home from './components/Home'
@@ -15,7 +15,7 @@ function App() {
     confirmPassword: '',
   })
 
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const inputs = [
     {
@@ -74,16 +74,43 @@ function App() {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value })
   }
 
+  // useEffect(() => {
+  //   localStorage.setItem('loggedIn', JSON.stringify(loggedIn))
+  //   console.log(JSON.parse(localStorage.getItem('loggedIn')))
+  // }, [])
+  const localSignUp = localStorage.getItem('signUp')
+  useEffect(() => {
+    if (localSignUp) {
+      setLoggedIn(true)
+    }
+  })
   const handleSubmit = async (e) => {
     e.preventDefault()
     const res = await axios.post(postUrl, inputValues)
     console.log(res.data.data)
-    setLoggedIn(true)
+    // setLoggedIn(true)
+    // localStorage.setItem('loggedIn', JSON.stringify(!loggedIn))
+    // console.log(loggedIn)
+    if (
+      inputValues.email &&
+      inputValues.password &&
+      inputValues.username &&
+      inputValues.phone &&
+      inputValues.confirmPassword
+    ) {
+      localStorage.setItem('signUp', inputValues.email)
+      localStorage.setItem('username', inputValues.username)
+      localStorage.setItem('phone', inputValues.phone)
+      localStorage.setItem('password', inputValues.password)
+      window.location.reload()
+    }
   }
 
   return (
     <div className='app'>
-      {loggedIn !== true ? (
+      {loggedIn ? (
+        <Home />
+      ) : (
         <form onSubmit={handleSubmit}>
           <h1>Register</h1>
           {inputs.map((input) => (
@@ -96,8 +123,6 @@ function App() {
           ))}
           <button>Submit</button>
         </form>
-      ) : (
-        <Home />
       )}
     </div>
   )

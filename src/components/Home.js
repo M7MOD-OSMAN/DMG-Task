@@ -3,7 +3,7 @@ import Users from './Users'
 import Pagination from './Pagination'
 import axios from 'axios'
 
-const Home = () => {
+const Home = ({ setLoggedIn }) => {
   const getUrl = 'https://dmgian.corp-dmg.com/osman-task-api/getAllUsers'
 
   const [users, setUsers] = useState([])
@@ -39,7 +39,10 @@ const Home = () => {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
-
+  const logOut = () => {
+    localStorage.removeItem('signUp')
+    window.location.reload()
+  }
   return (
     <div className='container mt-5 home'>
       <h1 className=' mb-3 user-heading'>Users DB</h1>
@@ -49,6 +52,7 @@ const Home = () => {
         totalUsers={users.length}
         paginate={paginate}
       />
+      <button onClick={logOut}>Return to Registration</button>
     </div>
   )
 }
