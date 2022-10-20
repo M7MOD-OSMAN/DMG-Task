@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import FormInput from './components/FormInput/FormInput'
-import './app.css'
+import './App.css'
 import Home from './components/Home'
 import axios from 'axios'
 
