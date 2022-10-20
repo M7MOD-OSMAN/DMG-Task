@@ -17,9 +17,14 @@ label {
 }
 
 span {
-  font-size: 12px;
+  font-size: 13px;
+  margin-top: -10px;
+  border: 1px solid red;
+  background-color: rgb(21, 21, 28);
+  border-radius: 5px;
+  text-shadow: 1px 1px 1px;
   padding: 3px;
-  color: red;
+  color: rgb(255, 0, 0);
   display: none;
 }
 

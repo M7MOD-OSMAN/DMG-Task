@@ -9,7 +9,17 @@ const Home = () => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [usersPerPage] = useState(4)
+  const [usersPerPage] = useState(3)
+
+  // the following two useEffects are to persist the current page in case of refreshing the page by the user
+  useEffect(() => {
+    const currentPage = window.localStorage.getItem('currentPage')
+    setCurrentPage(JSON.parse(currentPage))
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem('currentPage', JSON.stringify(currentPage))
+  })
 
   useEffect(() => {
     const postUsers = async () => {

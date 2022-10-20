@@ -9,13 +9,17 @@ const Users = ({ users, loading }) => {
     <ul className='list-group mb-4'>
       {users.map((user) => (
         <li key={user.id} className='list-group-item'>
-          <p>
+          <p className='m-2'>
+            <strong>ID: </strong>
+            {user.id}
+          </p>
+          <p className='m-2'>
             <strong>Username:</strong> {user.username}
           </p>
-          <p>
+          <p className='m-2'>
             <strong>Email:</strong> {user.email}
           </p>
-          <p>
+          <p className='m-2'>
             <strong>Phone: </strong>
             {user.phone}
           </p>
