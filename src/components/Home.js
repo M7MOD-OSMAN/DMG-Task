@@ -43,15 +43,23 @@ const Home = ({ setLoggedIn }) => {
     localStorage.removeItem('signUp')
     window.location.reload()
   }
+
   return (
     <div className='container mt-5 home'>
       <h1 className=' mb-3 user-heading'>Users DB</h1>
       <Users users={currentUsers} loading={loading} />
-      <Pagination
-        usersPerPage={usersPerPage}
-        totalUsers={users.length}
-        paginate={paginate}
-      />
+      <div className='pag-cont'>
+        <div className='pag'>
+          <Pagination
+            usersPerPage={usersPerPage}
+            totalUsers={users.length}
+            paginate={paginate}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            users={users}
+          />
+        </div>
+      </div>
       <button onClick={logOut}>Return to Registration</button>
     </div>
   )
