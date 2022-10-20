@@ -83,7 +83,7 @@ function App() {
     if (localSignUp) {
       setLoggedIn(true)
     }
-  })
+  }, [localSignUp])
   const handleSubmit = async (e) => {
     e.preventDefault()
     const res = await axios.post(postUrl, inputValues)
