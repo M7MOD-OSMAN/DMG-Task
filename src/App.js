@@ -15,7 +15,7 @@ function App() {
     confirmPassword: '',
   })
 
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(true)
 
   const inputs = [
     {
@@ -74,10 +74,6 @@ function App() {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value })
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem('loggedIn', JSON.stringify(loggedIn))
-  //   console.log(JSON.parse(localStorage.getItem('loggedIn')))
-  // }, [])
   const localSignUp = localStorage.getItem('signUp')
   useEffect(() => {
     if (localSignUp) {
@@ -88,9 +84,7 @@ function App() {
     e.preventDefault()
     const res = await axios.post(postUrl, inputValues)
     console.log(res.data.data)
-    // setLoggedIn(true)
-    // localStorage.setItem('loggedIn', JSON.stringify(!loggedIn))
-    // console.log(loggedIn)
+
     if (
       inputValues.email &&
       inputValues.password &&
@@ -121,7 +115,7 @@ function App() {
               onChange={onChange}
             />
           ))}
-          <button>Submit</button>
+          <button className='submit-btn'>Submit</button>
         </form>
       )}
     </div>

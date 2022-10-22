@@ -1,49 +1,25 @@
 import React from 'react'
+import ReactPaginate from 'react-paginate'
 
-const Pagination = ({
-  usersPerPage,
-  totalUsers,
-  paginate,
-  setCurrentPage,
-  currentPage,
-  users,
-}) => {
-  const pageNumbers = []
-
-  for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
-    pageNumbers.push(i)
+const Pagination = ({ usersPerPage, totalUsers, setCurrentPage }) => {
+  const pageCount = Math.ceil(totalUsers / usersPerPage)
+  const changePage = ({ selected }) => {
+    setCurrentPage(selected)
   }
 
-  const nextPage = () => setCurrentPage((prev) => prev + 1)
-  const prevPage = () => setCurrentPage((prev) => prev - 1)
-
   return (
-    <nav>
-      <ul className='pagination'>
-        <button onClick={prevPage} disabled={currentPage === 1}>
-          Prev Page
-        </button>
-        {pageNumbers
-          .map((number) => (
-            <li key={number} className='page-item'>
-              <a
-                onClick={(e) => {
-                  e.preventDefault()
-                  paginate(number)
-                }}
-                href='!#'
-                className='page-link'
-              >
-                {number}
-              </a>
-            </li>
-          ))
-          .slice(0, 4)}
-        <button className='nxt-btn' onClick={nextPage} disabled={!users.length}>
-          Next Page
-        </button>
-      </ul>
-    </nav>
+    <ReactPaginate
+      previousLabel={'Prev Page'}
+      nextLabel={'Next'}
+      pageRangeDisplayed={1}
+      pageCount={pageCount}
+      onPageChange={changePage}
+      containerClassName={'paginationBttns'}
+      previousLinkClassName={'previousBttn'}
+      nextLinkClassName={'nextBttn'}
+      disabledClassName={'paginationDisabled'}
+      activeClassName={'paginationActive'}
+    />
   )
 }
 

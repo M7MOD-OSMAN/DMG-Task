@@ -3,7 +3,7 @@ import Users from './Users'
 import Pagination from './Pagination'
 import axios from 'axios'
 
-const Home = ({ setLoggedIn }) => {
+const Home = () => {
   const getUrl = 'https://dmgian.corp-dmg.com/osman-task-api/getAllUsers'
 
   const [users, setUsers] = useState([])
@@ -60,7 +60,11 @@ const Home = ({ setLoggedIn }) => {
           />
         </div>
       </div>
-      <button onClick={logOut}>Return to Registration</button>
+      <div className='return-btn-container'>
+        <button className='return-btn' onClick={logOut}>
+          Return to Registration
+        </button>
+      </div>
     </div>
   )
 }

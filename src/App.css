@@ -18,7 +18,7 @@ h1 {
   text-align: center;
 }
 
-button {
+.submit-btn {
   width: 100%;
   height: 50px;
   padding: 5px;
@@ -32,44 +32,67 @@ button {
   margin-top: 15px;
   margin-bottom: 25px;
 }
-button:hover {
+/* button:hover {
+} */
+
+.return-btn-container {
+  text-align: center;
+}
+.return-btn {
+  color: gray;
+  background-color: white;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 25%;
+  letter-spacing: 2px;
+}
+.return-btn:hover {
   background-color: #f4efdb;
 }
-
-.home {
-}
-
 strong {
-  color: #cbab2d;
+  color: #b49209;
 }
 .user-heading {
   color: #cbab2d;
 }
 
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  position: relative;
-}
-.pagination button {
-  padding: 2px;
-  width: 15%;
-  height: 2%;
-  display: inline;
-}
 .page-item {
   padding-bottom: 9px;
 }
-.nxt-btn {
-  margin-left: 38px;
+
+/* pagination */
+.paginationBttns {
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
 }
-.nxt-btn::after {
-  content: '. . .';
-  position: absolute;
-  top: 18%;
-  left: 54.3%;
-  background-color: white;
-  padding: 4px;
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  color: #b49209;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.paginationBttns a:hover {
+  color: #b49209;
+  background-color: #ffffff;
+}
+
+.paginationActive a {
+  color: blue;
+  background-color: #fff;
+}
+
+.paginationDisabled a {
+  color: rgb(73, 66, 66);
+  background-color: grey;
 }
