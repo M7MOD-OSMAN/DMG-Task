@@ -15,7 +15,7 @@ function App() {
     confirmPassword: '',
   })
 
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const inputs = [
     {
