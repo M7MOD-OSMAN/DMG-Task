@@ -105,18 +105,20 @@ function App() {
       {loggedIn ? (
         <Home />
       ) : (
-        <form onSubmit={handleSubmit}>
-          <h1>Register</h1>
-          {inputs.map((input) => (
-            <FormInput
-              key={input.id}
-              {...input}
-              value={inputValues[input.name]}
-              onChange={onChange}
-            />
-          ))}
-          <button className='submit-btn'>Submit</button>
-        </form>
+        <div className='form-container'>
+          <form onSubmit={handleSubmit}>
+            <h1>Register</h1>
+            {inputs.map((input) => (
+              <FormInput
+                key={input.id}
+                {...input}
+                value={inputValues[input.name]}
+                onChange={onChange}
+              />
+            ))}
+            <button className='submit-btn'>Submit</button>
+          </form>
+        </div>
       )}
     </div>
   )

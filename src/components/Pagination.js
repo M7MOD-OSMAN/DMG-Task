@@ -1,17 +1,12 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate'
 
-const Pagination = ({ usersPerPage, totalUsers, setCurrentPage }) => {
-  const pageCount = Math.ceil(totalUsers / usersPerPage)
-  const changePage = ({ selected }) => {
-    setCurrentPage(selected)
-  }
-
+const Pagination = ({ pageCount, changePage }) => {
   return (
     <ReactPaginate
       previousLabel={'Prev Page'}
       nextLabel={'Next'}
-      pageRangeDisplayed={1}
+      pageRangeDisplayed={3}
       pageCount={pageCount}
       onPageChange={changePage}
       containerClassName={'paginationBttns'}

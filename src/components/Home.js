@@ -8,17 +8,30 @@ const Home = () => {
 
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [usersPerPage] = useState(3)
+  const [pageNumber, setPageNumber] = useState(0)
 
+  const usersPerPage = 3
+  const pagesVisited = pageNumber * usersPerPage
+
+  const pageCount = Math.ceil(users.length / usersPerPage)
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected)
+  }
+
+  const displayUsers = users
+    .slice(pagesVisited, pagesVisited + usersPerPage)
+    .map((user) => {
+      return <Users key={user.id} user={user} loading={loading} />
+    })
   // the following two useEffects are to persist the current page in case of refreshing the page by the user
   useEffect(() => {
-    const currentPage = window.localStorage.getItem('currentPage')
-    setCurrentPage(JSON.parse(currentPage))
+    const pageNumber = window.localStorage.getItem('pageNumber')
+    setPageNumber(JSON.parse(pageNumber))
   }, [])
 
   useEffect(() => {
-    window.localStorage.setItem('currentPage', JSON.stringify(currentPage))
+    window.localStorage.setItem('pageNumber', JSON.stringify(pageNumber))
   })
 
   useEffect(() => {
@@ -32,34 +45,18 @@ const Home = () => {
     postUsers()
   }, [])
 
-  // Get current users
-  const indexOfLastUser = currentPage * usersPerPage
-  const indexOfFirstPost = indexOfLastUser - usersPerPage
-  const currentUsers = users.slice(indexOfFirstPost, indexOfLastUser)
-
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
   const logOut = () => {
     localStorage.removeItem('signUp')
     window.location.reload()
   }
 
   return (
-    <div className='container mt-5 home'>
-      <h1 className=' mb-3 user-heading'>Users DB</h1>
-      <Users users={currentUsers} loading={loading} />
-      <div className='pag-cont'>
-        <div className='pag'>
-          <Pagination
-            usersPerPage={usersPerPage}
-            totalUsers={users.length}
-            paginate={paginate}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-            users={users}
-          />
-        </div>
-      </div>
+    <div className='home-container'>
+      <h1 className=' mb-1 user-heading'>Users DB</h1>
+      {displayUsers}
+
+      <Pagination pageCount={pageCount} changePage={changePage} />
+
       <div className='return-btn-container'>
         <button className='return-btn' onClick={logOut}>
           Return to Registration
